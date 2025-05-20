@@ -1,6 +1,6 @@
 package proyectoSW.Airbnb_grupo6.E_Enums;
 
-public enum PaymentMethods {
+public enum PaymentMethod {
     DEBITO,
     CREDITO,
     TRANSFERENCIA

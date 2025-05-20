@@ -17,7 +17,7 @@ public class Accommodation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idAccommodation;
 
     @Column(name = "title", nullable = false)
     private String title;

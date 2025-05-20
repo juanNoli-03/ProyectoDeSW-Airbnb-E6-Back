@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import proyectoSW.Airbnb_grupo6.E_Enums.PaymentMethods;
+import proyectoSW.Airbnb_grupo6.E_Enums.PaymentMethod;
 import java.time.LocalDateTime;
 
 @Builder
@@ -19,7 +19,7 @@ public class Booking {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idBooking;
 
     @Column(name = "start_date", nullable = false)
     private LocalDateTime startDate;
@@ -30,11 +30,14 @@ public class Booking {
     @Column(name = "number_of_guests", nullable = false)
     private int numberOfGuests;
 
+    @Column(name = "number_of_guests", nullable = false)
+    private int numberOfNights;
+
     @Column(name = "final_amount", nullable = false)
     private double final_amount;
 
     @Column(name = "payment_method", nullable = false)
-    private PaymentMethods paymentMethod;
+    private PaymentMethod paymentMethod;
 
     @Column(name = "rating", nullable = false)
     private int rating;
