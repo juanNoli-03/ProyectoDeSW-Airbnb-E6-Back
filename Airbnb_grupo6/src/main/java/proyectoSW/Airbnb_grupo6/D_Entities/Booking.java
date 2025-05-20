@@ -30,7 +30,7 @@ public class Booking {
     @Column(name = "number_of_guests", nullable = false)
     private int numberOfGuests;
 
-    @Column(name = "number_of_guests", nullable = false)
+    @Column(name = "number_of_nights", nullable = false)
     private int numberOfNights;
 
     @Column(name = "final_amount", nullable = false)
