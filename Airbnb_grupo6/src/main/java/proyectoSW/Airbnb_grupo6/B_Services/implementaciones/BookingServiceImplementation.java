@@ -21,7 +21,7 @@ public class BookingServiceImplementation {
 
         if(b.getAccommodation() == null || b.getEndDate() == null || b.getUser() == null
             || b.getFinal_amount() <= 0 || b.getStartDate() == null || b.getPaymentMethod() == null
-                || b.getNumberOfGuests() <= 0){
+                || b.getNumberOfGuests() <= 0 || b.getNumberOfNights() <= 0 ){
 
             throw new CustomException(HttpStatus.BAD_REQUEST, "Error: faltan datos para completar la reserva");
 

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import proyectoSW.Airbnb_grupo6.B_Services.implementaciones.BookingServiceImplementation;
 import proyectoSW.Airbnb_grupo6.D_Entities.Booking;
 
-@CrossOrigin(origins = "http://localhost:5174")
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 
 public class BookingController {

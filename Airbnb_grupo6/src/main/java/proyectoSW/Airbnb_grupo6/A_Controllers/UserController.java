@@ -11,7 +11,7 @@ import proyectoSW.Airbnb_grupo6.B_Services.implementaciones.UserServiceImplement
 import proyectoSW.Airbnb_grupo6.D_Dtos.userDTO.CreateUserDTO;
 import proyectoSW.Airbnb_grupo6.D_Dtos.userDTO.LoginUserDTO;
 
-@CrossOrigin(origins = "http://localhost:5174")
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 public class UserController {
 

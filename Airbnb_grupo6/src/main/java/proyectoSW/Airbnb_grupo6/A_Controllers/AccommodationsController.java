@@ -8,7 +8,7 @@ import proyectoSW.Airbnb_grupo6.B_Services.implementaciones.AccommodationService
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:5174")
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 
 public class AccommodationsController {
