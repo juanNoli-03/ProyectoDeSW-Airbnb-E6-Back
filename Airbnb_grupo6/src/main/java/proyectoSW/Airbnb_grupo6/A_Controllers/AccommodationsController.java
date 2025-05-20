@@ -16,13 +16,18 @@ public class AccommodationsController {
     @Autowired
     private AccommodationServiceImplementation AccommodationService;
 
-@GetMapping("/accommodations")
+    @GetMapping("/accommodations")
     public ResponseEntity  <List<Accommodation>> getAccommodations (){
-    List<Accommodation> alojamientos = AccommodationService.GetAllAccommodations();
-    return ResponseEntity.ok(alojamientos);
+    List<Accommodation> allotments = AccommodationService.GetAllAccommodations();
+    return ResponseEntity.ok(allotments);
     }
 
+    @GetMapping("/accommodations/{id}")
+    public ResponseEntity<Accommodation> GetAccommodationById(@PathVariable Long id){
 
+    Accommodation allotment = AccommodationService.GetAccommodationById(id);
+    return ResponseEntity.ok(allotment);
+    }
 
 
 

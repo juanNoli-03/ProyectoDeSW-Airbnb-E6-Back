@@ -17,18 +17,21 @@ public class AccommodationServiceImplementation {
     @Autowired
     private AccommodationRepository AccommodationRepository;
 
-
+    // lista de alojamientos
     public List<Accommodation> GetAllAccommodations(){
 
         List<Accommodation> list =  new ArrayList<>();
         list = AccommodationRepository.findAll();
-
         if (list.isEmpty()) {
             throw new CustomException(HttpStatus.FORBIDDEN, "Error: no existen alojamientos");
         }
 
         return list;
+    }
 
+    // alojamiento en particular
+    public Accommodation GetAccommodationById(long id){
+        return AccommodationRepository.findById(id).orElseThrow(() -> new CustomException(HttpStatus.NOT_FOUND, "Error: no existen alojamientos"));
     }
 
 }
