@@ -16,8 +16,11 @@ public interface UserService {
     ShowUserDTO login (LoginUserDTO loginUserDTO);
 
     ///TRAER USUARIO POR ID
-    User getByIdUser(Long id);
+    User getUser(Long idUser);
 
-    //Traer User por email
-    User getByEmailUser(String email);
+    //TRAER USUARIO POR MAIL
+    User getUser(String email);
+
+    //TRAER USUARIO POR MAIL Y CONTRASEÑA
+    User getUser(String email, String password);
 }

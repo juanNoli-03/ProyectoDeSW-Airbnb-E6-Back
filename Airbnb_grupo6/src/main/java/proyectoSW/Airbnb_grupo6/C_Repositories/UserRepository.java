@@ -11,12 +11,14 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
+    //TRAER USUARIO POR MAIL Y CONTRASEÑA
     @Query ("SELECT u FROM User u WHERE u.email = :email AND u.password = :password ")
     Optional <User> findByEmailAndPassoword (@Param("email") String email, @Param("password") String password);
 
+    //TRAER USUARIO POR MAIL
     @Query ("SELECT u FROM User u WHERE u.email = :email ")
     Optional <User> findByEmail (@Param("email") String email);
 
-
+    
 
 }

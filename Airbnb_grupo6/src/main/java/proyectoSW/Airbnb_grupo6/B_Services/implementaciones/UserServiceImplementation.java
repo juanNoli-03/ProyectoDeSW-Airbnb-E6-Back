@@ -25,7 +25,7 @@ public class UserServiceImplementation implements UserService {
     private EmailService emailService;
 
     
-    ///constructor
+    ///CONSTRUCTOR
     public UserServiceImplementation(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -53,14 +53,19 @@ public class UserServiceImplementation implements UserService {
 
     ///TRAER USUARIO POR ID
     @Override
-    public User getByIdUser(Long id) {
-        return userRepository.findById(id).orElse(null); // Devuelve null si no se encuentra
+    public User getUser(Long idUser) {
+        return userRepository.findById(idUser).orElse(null); // Devuelve null si no se encuentra
     }
 
+    //TRAER USUARIO POR MAIL
     @Override
-
-    public User getByEmailUser(String email){
+    public User getUser(String email){
         return userRepository.findByEmail(email).orElseThrow(()-> new CustomException(HttpStatus.FORBIDDEN, "User Not Found"));
+    }
+
+    //TRAER USUARIO POR MAIL Y CONTRASEÑA
+    public User getUser(String email, String password){
+        return userRepository.findByEmailAndPassoword(email, password).orElseThrow(()-> new CustomException(HttpStatus.FORBIDDEN, "User Not Found"));
     }
 
 }

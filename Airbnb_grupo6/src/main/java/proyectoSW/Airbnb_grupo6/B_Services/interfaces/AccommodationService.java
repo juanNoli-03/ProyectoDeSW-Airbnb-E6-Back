@@ -8,10 +8,10 @@ import proyectoSW.Airbnb_grupo6.D_Entities.User;
 
 public interface AccommodationService {
     
-    /// TRAER RESERVAS ASOCIADAS A UN USUARIO CON ALOJAMIENTOS Y USUARIO
-    List<Accommodation> getAll();
+    /// TRAER TODOS LOS ALOJAMIENTOS
+    List<Accommodation> getAccommodations();
 
-    ///TRAER USUARIO POR ID
+    ///TRAER ALOJAMIENTO POR ID
     Accommodation getAccommodation(Long idAccommodation);
 
     

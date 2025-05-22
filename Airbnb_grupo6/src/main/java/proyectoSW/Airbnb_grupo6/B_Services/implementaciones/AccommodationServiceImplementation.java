@@ -18,8 +18,8 @@ public class AccommodationServiceImplementation implements AccommodationService 
     @Autowired
     private AccommodationRepository AccommodationRepository;
 
-    // lista de alojamientos
-    public List<Accommodation> getAll(){
+    /// TRAER TODOS LOS ALOJAMIENTOS
+    public List<Accommodation> getAccommodations(){
 
         List<Accommodation> list =  new ArrayList<>();
         list = AccommodationRepository.findAll();
@@ -30,7 +30,7 @@ public class AccommodationServiceImplementation implements AccommodationService 
         return list;
     }
 
-    // alojamiento en particular
+    ///TRAER ALOJAMIENTO POR ID
     public Accommodation getAccommodation(Long idAccommodation){
         return AccommodationRepository.findById(idAccommodation).orElseThrow(() -> new CustomException(HttpStatus.NOT_FOUND, "Error: no existen alojamientos"));
     }

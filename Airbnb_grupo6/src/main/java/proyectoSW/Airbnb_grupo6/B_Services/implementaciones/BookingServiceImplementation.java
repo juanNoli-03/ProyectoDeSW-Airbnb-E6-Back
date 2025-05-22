@@ -34,7 +34,7 @@ public class BookingServiceImplementation implements BookingService{
         this.bookingRepository = bookingRepository;
     }
 
-    ///CREAR RESERVA
+    ///CREAR UNA RESERVA 
     public Booking createBooking(Booking b) {
 
         // Validaciones de campos obligatorios
@@ -52,7 +52,7 @@ public class BookingServiceImplementation implements BookingService{
         }
 
         // Recuperar entidades reales desde la base de datos
-        User user = userService.getByIdUser(b.getUser().getIdUser());
+        User user = userService.getUser(b.getUser().getIdUser());
         Accommodation accommodation = accommodationService.getAccommodation(b.getAccommodation().getIdAccommodation());
 
         
@@ -67,7 +67,7 @@ public class BookingServiceImplementation implements BookingService{
 
     /// TRAER RESERVAS ASOCIADAS A UN USUARIO CON ALOJAMIENTOS Y USUARIO
     public List<Booking> getBookings(Long idUser) {
-        return bookingRepository.findBookings(idUser);
+        return bookingRepository.findBookingsByIdUserWithAccommodationsAndUser(idUser);
     }
 
 }
