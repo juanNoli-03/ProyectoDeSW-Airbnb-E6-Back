@@ -27,10 +27,10 @@ public class BookingController {
         return ResponseEntity.ok(rent);
     }
 
-    /// TRAER RESERVAS ASOCIADAS A UN USUARIO
-    @GetMapping("/user/bookings/{userId}")
-    public List<Booking> getBookingsByUser(@PathVariable Long userId) {
-        return bookingService.getBookingsByUserId(userId);
+    /// TRAER RESERVAS ASOCIADAS A UN USUARIO CON ALOJAMIENTOS Y USUARIO
+    @GetMapping("/user/bookings/{idUser}")
+    public List<Booking> getBookings(@PathVariable Long idUser) {
+        return bookingService.getBookings(idUser);
     }
     
 

@@ -4,7 +4,9 @@ import java.util.List;
 
 public interface BookingService {
 
-    /// TRAER RESERVAS ASOCIADAS A UN USUARIO
-    List<Booking> getBookingsByUserId(Long userId);
+    /// TRAER RESERVAS ASOCIADAS A UN USUARIO CON ALOJAMIENTOS Y USUARIO
+    List<Booking> getBookings(Long idUser);
+
+    
 
 }

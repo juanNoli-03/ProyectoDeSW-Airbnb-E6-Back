@@ -32,9 +32,9 @@ public class BookingServiceImplementation {
 
     }
 
-    /// TRAER RESERVAS ASOCIADAS A UN USUARIO
-    public List<Booking> getBookingsByUserId(Long userId) {
-        return BookingRepository.findBookingsByUserId(userId);
+    /// TRAER RESERVAS ASOCIADAS A UN USUARIO CON ALOJAMIENTOS Y USUARIO
+    public List<Booking> getBookings(Long idUser) {
+        return BookingRepository.findBookings(idUser);
     }
 
 }
