@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface BookingService {
 
-    ///CREAR BOOKING
+    ///CREAR UNA RESERVA 
     public Booking createBooking(Booking b);
 
     /// TRAER RESERVAS ASOCIADAS A UN USUARIO CON ALOJAMIENTOS Y USUARIO

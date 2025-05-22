@@ -40,15 +40,15 @@ public class UserController {
     }
 
     ///TRAER USUARIO POR ID
-    @GetMapping("/user/{id}")
-    public User getByIdUser(@PathVariable Long id) {
-        return userService.getByIdUser(id);
+    @GetMapping("/user/{idUser}")
+    public User getByIdUser(@PathVariable Long idUser) {
+        return userService.getUser(idUser);
     }
 
     ///TRAER USUARIO POR EMAIL
     @GetMapping("/user/email/{email}")
     public User getByEmailUser(@PathVariable String email) {
-        return userService.getByEmailUser(email);
+        return userService.getUser(email);
     }
 
 

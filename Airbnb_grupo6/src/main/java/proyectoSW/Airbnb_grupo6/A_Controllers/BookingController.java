@@ -16,15 +16,13 @@ public class BookingController {
     @Autowired
     private BookingService bookingService;
 
-
-    //TODO: TESTEAR SI SE REALIZO CORRECTAMENTE
-
+    ///CREAR UNA RESERVA 
     @PostMapping("/booking")
     public ResponseEntity<Booking> createBooking(@RequestBody Booking booking) {
 
-        Booking rent = bookingService.createBooking(booking);
+        Booking reservation = bookingService.createBooking(booking);
 
-        return ResponseEntity.ok(rent);
+        return ResponseEntity.ok(reservation);
     }
 
     /// TRAER RESERVAS ASOCIADAS A UN USUARIO CON ALOJAMIENTOS Y USUARIO

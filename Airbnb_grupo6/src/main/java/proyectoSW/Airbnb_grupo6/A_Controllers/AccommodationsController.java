@@ -15,17 +15,19 @@ public class AccommodationsController {
     @Autowired
     private AccommodationService AccommodationService;
 
+    /// TRAER TODOS LOS ALOJAMIENTOS
     @GetMapping("/accommodations")
     public ResponseEntity  <List<Accommodation>> getAccommodations (){
-    List<Accommodation> allotments = AccommodationService.getAll();
-    return ResponseEntity.ok(allotments);
+        List<Accommodation> allotments = AccommodationService.getAccommodations();
+        return ResponseEntity.ok(allotments);
     }
 
-    @GetMapping("/accommodations/{id}")
-    public ResponseEntity<Accommodation> GetAccommodationById(@PathVariable Long id){
+    ///TRAER ALOJAMIENTO POR ID
+    @GetMapping("/accommodations/{idAccommodation}")
+    public ResponseEntity<Accommodation> GetAccommodationById(@PathVariable Long idAccommodation){
 
-    Accommodation allotment = AccommodationService.getAccommodation(id);
-    return ResponseEntity.ok(allotment);
+        Accommodation accommodation = AccommodationService.getAccommodation(idAccommodation);
+        return ResponseEntity.ok(accommodation);
     }
 
 }

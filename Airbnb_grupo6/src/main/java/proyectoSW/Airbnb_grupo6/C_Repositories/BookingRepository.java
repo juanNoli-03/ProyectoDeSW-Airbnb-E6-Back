@@ -12,12 +12,12 @@ public interface BookingRepository extends JpaRepository<Booking, Long>{
 
     /// TRAER RESERVAS ASOCIADAS A UN USUARIO CON ALOJAMIENTOS Y USUARIO
     @Query("SELECT b FROM Booking b JOIN FETCH b.user JOIN FETCH b.accommodation WHERE b.user.idUser = :idUser")
-    List<Booking> findBookings(@Param("idUser") Long idUser);
+    List<Booking> findBookingsByIdUserWithAccommodationsAndUser(@Param("idUser") Long idUser);
 
 
     /// TRAER RESERVAS ASOCIADAS A UN USUARIO
-    //@Query("SELECT b FROM Booking b JOIN FETCH b.accommodation WHERE b.user.idUser = :userId")
-    //List<Booking> findBookingsByUserId(@Param("userId") Long userId);
+    @Query("SELECT b FROM Booking b JOIN FETCH b.accommodation WHERE b.user.idUser = :userId")
+    List<Booking> findBookingsByUserId(@Param("userId") Long userId);
 
 
 
