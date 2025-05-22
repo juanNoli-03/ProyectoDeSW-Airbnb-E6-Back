@@ -45,6 +45,11 @@ public class UserController {
         return userService.getByIdUser(id);
     }
 
-    
+    ///TRAER USUARIO POR EMAIL
+    @GetMapping("/user/email/{email}")
+    public User getByEmailUser(@PathVariable String email) {
+        return userService.getByEmailUser(email);
+    }
+
 
 }

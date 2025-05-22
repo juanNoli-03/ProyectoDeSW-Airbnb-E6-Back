@@ -18,5 +18,6 @@ public interface UserService {
     ///TRAER USUARIO POR ID
     User getByIdUser(Long id);
 
-
+    //Traer User por email
+    User getByEmailUser(String email);
 }

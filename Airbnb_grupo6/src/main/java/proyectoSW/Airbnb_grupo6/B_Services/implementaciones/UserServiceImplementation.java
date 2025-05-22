@@ -57,5 +57,10 @@ public class UserServiceImplementation implements UserService {
         return userRepository.findById(id).orElse(null); // Devuelve null si no se encuentra
     }
 
+    @Override
+
+    public User getByEmailUser(String email){
+        return userRepository.findByEmail(email).orElseThrow(()-> new CustomException(HttpStatus.FORBIDDEN, "User Not Found"));
+    }
 
 }
