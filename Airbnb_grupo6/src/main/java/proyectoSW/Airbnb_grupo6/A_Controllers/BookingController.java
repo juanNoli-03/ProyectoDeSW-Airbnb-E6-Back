@@ -3,7 +3,7 @@ package proyectoSW.Airbnb_grupo6.A_Controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import proyectoSW.Airbnb_grupo6.B_Services.implementaciones.BookingServiceImplementation;
+import proyectoSW.Airbnb_grupo6.B_Services.interfaces.BookingService;
 import proyectoSW.Airbnb_grupo6.D_Entities.Booking;
 import java.util.List;
 
@@ -14,15 +14,15 @@ import java.util.List;
 public class BookingController {
 
     @Autowired
-    private BookingServiceImplementation bookingService;
+    private BookingService bookingService;
 
 
     //TODO: TESTEAR SI SE REALIZO CORRECTAMENTE
 
-    @PostMapping("/rent")
-    public ResponseEntity<Booking> rent(@RequestBody Booking booking) {
+    @PostMapping("/booking")
+    public ResponseEntity<Booking> createBooking(@RequestBody Booking booking) {
 
-        Booking rent = bookingService.createReservation(booking);
+        Booking rent = bookingService.createBooking(booking);
 
         return ResponseEntity.ok(rent);
     }
