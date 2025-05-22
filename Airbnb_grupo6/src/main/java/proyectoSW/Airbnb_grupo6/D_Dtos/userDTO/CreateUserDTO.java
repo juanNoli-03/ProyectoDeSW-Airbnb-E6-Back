@@ -14,14 +14,12 @@ public class CreateUserDTO {
     private String lastName;
     private String email;
     private String password;
-    private String dni;
 
     public void guardarCreateUserDTO (final User user) {
         user.setFirstName(this.firstName);
         user.setLastName(this.lastName);
         user.setEmail(this.email);
         user.setPassword(this.password);
-        user.setDni(this.dni);
     }
 
 

@@ -11,7 +11,6 @@ import proyectoSW.Airbnb_grupo6.D_Dtos.userDTO.CreateUserDTO;
 import proyectoSW.Airbnb_grupo6.D_Dtos.userDTO.LoginUserDTO;
 import proyectoSW.Airbnb_grupo6.D_Dtos.userDTO.ShowUserDTO;
 import proyectoSW.Airbnb_grupo6.D_Entities.User;
-import proyectoSW.Airbnb_grupo6.E_Enums.UserType;
 import proyectoSW.Airbnb_grupo6.E_Exceptions.CustomException;
 
 @Service
@@ -36,10 +35,10 @@ public class UserServiceImplementation implements UserService {
 
         //Inicializamos el user vacío.
         User userAGuardar = User.builder().build();
-        userAGuardar.setUserType(UserType.ANFITRION);
         createUserDTO.guardarCreateUserDTO(userAGuardar);
         userRepository.save(userAGuardar);
-        emailService.sendEmail((createUserDTO.getFirstName() +" "+ createUserDTO.getLastName() ), createUserDTO.getEmail(),"Registro AIRBNB :D" );
+        emailService.sendEmail((createUserDTO.getFirstName() +" "+ createUserDTO.getLastName() ), createUserDTO.getEmail(),
+                "Bienvenido a Airbnb!" );
 
         return createUserDTO;
     }
