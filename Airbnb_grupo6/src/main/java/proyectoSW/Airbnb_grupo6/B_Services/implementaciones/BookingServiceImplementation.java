@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import proyectoSW.Airbnb_grupo6.C_Repositories.BookingRepository;
 import proyectoSW.Airbnb_grupo6.D_Entities.Booking;
 import proyectoSW.Airbnb_grupo6.E_Exceptions.CustomException;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -31,6 +32,9 @@ public class BookingServiceImplementation {
 
     }
 
-
+    /// TRAER RESERVAS ASOCIADAS A UN USUARIO
+    public List<Booking> getBookingsByUserId(Long userId) {
+        return BookingRepository.findBookingsByUserId(userId);
+    }
 
 }

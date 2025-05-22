@@ -1,5 +1,7 @@
 package proyectoSW.Airbnb_grupo6.D_Entities;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

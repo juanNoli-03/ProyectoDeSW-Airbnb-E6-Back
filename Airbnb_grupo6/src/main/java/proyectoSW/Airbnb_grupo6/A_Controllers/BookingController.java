@@ -5,6 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import proyectoSW.Airbnb_grupo6.B_Services.implementaciones.BookingServiceImplementation;
 import proyectoSW.Airbnb_grupo6.D_Entities.Booking;
+import java.util.List;
+
 
 @CrossOrigin(origins = "http://localhost:5173")
 @RestController
@@ -24,5 +26,12 @@ public class BookingController {
 
         return ResponseEntity.ok(rent);
     }
+
+    /// TRAER RESERVAS ASOCIADAS A UN USUARIO
+    @GetMapping("/user/bookings/{userId}")
+    public List<Booking> getBookingsByUser(@PathVariable Long userId) {
+        return bookingService.getBookingsByUserId(userId);
+    }
+    
 
 }

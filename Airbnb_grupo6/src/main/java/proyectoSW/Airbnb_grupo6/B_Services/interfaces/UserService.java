@@ -17,4 +17,6 @@ public interface UserService {
 
     ///TRAER USUARIO POR ID
     User getByIdUser(Long id);
+
+
 }

@@ -57,4 +57,5 @@ public class UserServiceImplementation implements UserService {
         return userRepository.findById(id).orElse(null); // Devuelve null si no se encuentra
     }
 
+
 }
