@@ -1,0 +1,28 @@
+package proyectoSW.Airbnb_grupo6.B_Services.implementaciones;
+
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Service;
+
+@Service
+public class EmailService {
+
+    @Autowired
+    private JavaMailSender javaMailSender;
+
+    public void sendEmail(String nombreUsuario, String emailDestino, String subject) throws MessagingException {
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
+        helper.setTo(emailDestino);
+        helper.setSubject(subject);
+
+        String htmlMsg = "<h3>Estimado Cliente."+nombreUsuario+ "</h3>" +
+                "<p>" + "Se ha la realizado con éxito el registro en AirBNB." + "<b>" + "</b>" + "</p>" +
+                "<p><b>Muchas gracias!</b></p>";
+        helper.setText(htmlMsg, true);  // true para habilitar HTML
+        javaMailSender.send(mimeMessage);
+    }
+}

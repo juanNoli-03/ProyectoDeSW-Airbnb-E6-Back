@@ -23,4 +23,6 @@ public class CreateUserDTO {
         user.setPassword(this.password);
         user.setDni(this.dni);
     }
+
+
 }
