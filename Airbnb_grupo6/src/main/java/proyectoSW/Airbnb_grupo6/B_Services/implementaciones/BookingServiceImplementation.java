@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import proyectoSW.Airbnb_grupo6.C_Repositories.BookingRepository;
-import proyectoSW.Airbnb_grupo6.C_Repositories.UserRepository;
 import proyectoSW.Airbnb_grupo6.D_Entities.Accommodation;
 import proyectoSW.Airbnb_grupo6.D_Entities.Booking;
 import proyectoSW.Airbnb_grupo6.D_Entities.User;
@@ -40,7 +39,7 @@ public class BookingServiceImplementation implements BookingService{
         // Validaciones de campos obligatorios
         if (b.getStartDate() == null || b.getEndDate() == null
                 || b.getNumberOfGuests() <= 0 || b.getNumberOfNights() <= 0
-                || b.getFinal_amount() <= 0 || b.getPaymentMethod() == null
+                || b.getFinalAmount() <= 0 || b.getPaymentMethod() == null
                 || b.getUser() == null || b.getAccommodation() == null) {
 
             throw new CustomException(HttpStatus.BAD_REQUEST, "Faltan datos obligatorios para la reserva.");

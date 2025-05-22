@@ -39,4 +39,6 @@ public class Accommodation {
 
     @Column(name = "available", nullable = false)
     private Boolean available;
+
+    private String imageUrl;
 }

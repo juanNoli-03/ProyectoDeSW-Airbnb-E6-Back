@@ -24,7 +24,7 @@ public class AccommodationServiceImplementation implements AccommodationService 
         List<Accommodation> list =  new ArrayList<>();
         list = AccommodationRepository.findAll();
         if (list.isEmpty()) {
-            throw new CustomException(HttpStatus.FORBIDDEN, "Error: no existen alojamientos");
+            throw new CustomException(HttpStatus.NOT_FOUND, "Error: no existen alojamientos");
         }
 
         return list;
