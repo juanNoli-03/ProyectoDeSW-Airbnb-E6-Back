@@ -6,6 +6,7 @@ import proyectoSW.Airbnb_grupo6.D_Dtos.userDTO.LoginUserDTO;
 import proyectoSW.Airbnb_grupo6.D_Dtos.userDTO.ShowUserDTO;
 import proyectoSW.Airbnb_grupo6.D_Entities.User;
 
+
 public interface UserService {
 
     //1- Sign Up.
@@ -13,4 +14,7 @@ public interface UserService {
 
     //2- Login.
     ShowUserDTO login (LoginUserDTO loginUserDTO);
+
+    ///TRAER USUARIO POR ID
+    User getByIdUser(Long id);
 }

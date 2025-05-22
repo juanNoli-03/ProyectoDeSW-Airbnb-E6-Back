@@ -18,11 +18,18 @@ import proyectoSW.Airbnb_grupo6.E_Exceptions.CustomException;
 @RequiredArgsConstructor
 public class UserServiceImplementation implements UserService {
 
+
+    ///Atributos
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
     private EmailService emailService;
+
+    
+    ///constructor
+    public UserServiceImplementation(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public CreateUserDTO signUp(CreateUserDTO createUserDTO) throws MessagingException {
@@ -44,4 +51,11 @@ public class UserServiceImplementation implements UserService {
                 .orElseThrow( ()-> new CustomException(HttpStatus.FORBIDDEN, "Credenciales invalidas!"));
         return new ShowUserDTO(userEncontrado);
     }
+
+    ///TRAER USUARIO POR ID
+    @Override
+    public User getByIdUser(Long id) {
+        return userRepository.findById(id).orElse(null); // Devuelve null si no se encuentra
+    }
+
 }
