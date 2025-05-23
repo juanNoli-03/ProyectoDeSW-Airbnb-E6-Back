@@ -19,4 +19,7 @@ public interface AccommodationService {
     
     ///TRAER TODOS LOS ALOJAMIENTO POR PRECIO DESCENDENTE
     List<Accommodation> getAccommodationsByOrderByPricePerNightDesc();
+
+    //TRAER TODOS LOS ALOJAMIENTOS POR PAIS
+    List<Accommodation> getAccommodationsByCountry(String country);
 }

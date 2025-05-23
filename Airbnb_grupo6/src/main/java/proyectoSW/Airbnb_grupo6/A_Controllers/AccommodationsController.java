@@ -45,4 +45,11 @@ public class AccommodationsController {
         return ResponseEntity.ok(accommodations);
     }
 
+    //TRAER TODOS LOS ALOJAMIENTOS POR PAIS
+    @GetMapping("/accommodationsByCountry/{country}")
+    public ResponseEntity  <List<Accommodation>> getAccommodationsByCountry (@PathVariable String country){
+        List<Accommodation> accommodations = AccommodationService.getAccommodationsByCountry(country);
+        return ResponseEntity.ok(accommodations);
+    }
+
 }

@@ -63,5 +63,19 @@ public class AccommodationServiceImplementation implements AccommodationService 
 
         return list;
     }
+
+    //TRAER TODOS LOS ALOJAMIENTOS POR PAIS
+    public List<Accommodation> getAccommodationsByCountry(String country){
+
+        List<Accommodation> list =  new ArrayList<>();
+        list = AccommodationRepository.findAllByCountry(country);
+
+        if (list.isEmpty()) {
+            throw new CustomException(HttpStatus.NOT_FOUND, "Error: no existen alojamientos");
+        }
+
+        return list;
+
+    }
    
 }
