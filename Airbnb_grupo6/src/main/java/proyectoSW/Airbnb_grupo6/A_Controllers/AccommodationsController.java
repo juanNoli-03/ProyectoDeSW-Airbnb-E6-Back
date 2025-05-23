@@ -60,5 +60,12 @@ public class AccommodationsController {
         return ResponseEntity.ok(accommodations);
     }
 
+    //TRAER TODOS LOS ALOJAMIENTOS POR DISPONIBILIDAD TRUE
+    @GetMapping("/accommodationsByAvailableTrue")
+    public ResponseEntity  <List<Accommodation>> getAccommodationsByAvailableTrue (){
+        List<Accommodation> accommodations = AccommodationService.getAccommodationsByAvailableTrue();
+        return ResponseEntity.ok(accommodations);
+    }
+
 
 }

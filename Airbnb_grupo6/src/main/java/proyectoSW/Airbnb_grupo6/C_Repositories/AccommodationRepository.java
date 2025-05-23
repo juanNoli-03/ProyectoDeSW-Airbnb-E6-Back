@@ -25,4 +25,7 @@ public interface AccommodationRepository extends JpaRepository<Accommodation, Lo
     //TRAER TODOS LOS ALOJAMIENTOS POR CIUDAD
     List<Accommodation> findAllByCity(String city);
 
+    //TRAER TODOS LOS ALOJAMIENTOS POR DISPONIBILIDAD TRUE
+    List<Accommodation> findAllByAvailableTrue();
+
 }

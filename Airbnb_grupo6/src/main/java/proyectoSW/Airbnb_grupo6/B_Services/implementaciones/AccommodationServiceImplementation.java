@@ -91,5 +91,19 @@ public class AccommodationServiceImplementation implements AccommodationService 
         return list;
 
     }
+    
+    //TRAER TODOS LOS ALOJAMIENTOS POR DISPONIBILIDAD TRUE
+    public List<Accommodation> getAccommodationsByAvailableTrue(){
+
+        List<Accommodation> list =  new ArrayList<>();
+        list = AccommodationRepository.findAllByAvailableTrue();
+
+        if (list.isEmpty()) {
+            throw new CustomException(HttpStatus.NOT_FOUND, "Error: no existen alojamientos");
+        }
+
+        return list;
+
+    }
    
 }
