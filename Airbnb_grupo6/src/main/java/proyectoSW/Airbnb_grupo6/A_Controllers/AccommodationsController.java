@@ -52,4 +52,13 @@ public class AccommodationsController {
         return ResponseEntity.ok(accommodations);
     }
 
+
+    //TRAER TODOS LOS ALOJAMIENTOS POR CIUDAD
+    @GetMapping("/accommodationsByCity/{city}")
+    public ResponseEntity  <List<Accommodation>> getAccommodationsByCity (@PathVariable String city){
+        List<Accommodation> accommodations = AccommodationService.getAccommodationsByCity(city);
+        return ResponseEntity.ok(accommodations);
+    }
+
+
 }

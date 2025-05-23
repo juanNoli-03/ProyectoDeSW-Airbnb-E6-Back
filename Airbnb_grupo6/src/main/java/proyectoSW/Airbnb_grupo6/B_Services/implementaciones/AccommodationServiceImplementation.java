@@ -77,5 +77,19 @@ public class AccommodationServiceImplementation implements AccommodationService 
         return list;
 
     }
+
+     //TRAER TODOS LOS ALOJAMIENTOS POR CIUDAD
+    public List<Accommodation> getAccommodationsByCity(String city){
+
+        List<Accommodation> list =  new ArrayList<>();
+        list = AccommodationRepository.findAllByCity(city);
+
+        if (list.isEmpty()) {
+            throw new CustomException(HttpStatus.NOT_FOUND, "Error: no existen alojamientos");
+        }
+
+        return list;
+
+    }
    
 }

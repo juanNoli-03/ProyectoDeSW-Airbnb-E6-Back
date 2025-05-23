@@ -22,4 +22,7 @@ public interface AccommodationRepository extends JpaRepository<Accommodation, Lo
     //TRAER TODOS LOS ALOJAMIENTOS POR PAIS
     List<Accommodation> findAllByCountry(String country);
 
+    //TRAER TODOS LOS ALOJAMIENTOS POR CIUDAD
+    List<Accommodation> findAllByCity(String city);
+
 }

@@ -22,4 +22,7 @@ public interface AccommodationService {
 
     //TRAER TODOS LOS ALOJAMIENTOS POR PAIS
     List<Accommodation> getAccommodationsByCountry(String country);
+
+    //TRAER TODOS LOS ALOJAMIENTOS POR CIUDAD
+    List<Accommodation> getAccommodationsByCity(String city);
 }
