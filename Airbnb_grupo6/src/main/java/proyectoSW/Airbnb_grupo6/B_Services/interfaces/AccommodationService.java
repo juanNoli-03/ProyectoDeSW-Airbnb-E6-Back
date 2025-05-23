@@ -14,5 +14,9 @@ public interface AccommodationService {
     ///TRAER ALOJAMIENTO POR ID
     Accommodation getAccommodation(Long idAccommodation);
 
+    ///TRAER TODOS LOS ALOJAMIENTO POR PRECIO ASCENDENTE
+    List<Accommodation> getAccommodationsByOrderByPricePerNightAsc();
     
+    ///TRAER TODOS LOS ALOJAMIENTO POR PRECIO DESCENDENTE
+    List<Accommodation> getAccommodationsByOrderByPricePerNightDesc();
 }

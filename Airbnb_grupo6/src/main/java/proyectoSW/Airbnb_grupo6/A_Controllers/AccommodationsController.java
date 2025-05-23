@@ -18,8 +18,8 @@ public class AccommodationsController {
     /// TRAER TODOS LOS ALOJAMIENTOS
     @GetMapping("/accommodations")
     public ResponseEntity  <List<Accommodation>> getAccommodations (){
-        List<Accommodation> allotments = AccommodationService.getAccommodations();
-        return ResponseEntity.ok(allotments);
+        List<Accommodation> accommodations = AccommodationService.getAccommodations();
+        return ResponseEntity.ok(accommodations);
     }
 
     ///TRAER ALOJAMIENTO POR ID
@@ -28,6 +28,21 @@ public class AccommodationsController {
 
         Accommodation accommodation = AccommodationService.getAccommodation(idAccommodation);
         return ResponseEntity.ok(accommodation);
+    }
+
+
+    /// TRAER TODOS LOS ALOJAMIENTO POR PRECIO ASCENDENTE
+    @GetMapping("/accommodationsByOrderByPricePerNightAsc")
+    public ResponseEntity  <List<Accommodation>> getAccommodationsByOrderByPricePerNightAsc (){
+        List<Accommodation> accommodations = AccommodationService.getAccommodationsByOrderByPricePerNightAsc();
+        return ResponseEntity.ok(accommodations);
+    }
+
+    ///TRAER TODOS LOS ALOJAMIENTO POR PRECIO DESCENDENTE
+    @GetMapping("/accommodationsByOrderByPricePerNightDesc")
+    public ResponseEntity  <List<Accommodation>> getAccommodationsByOrderByPricePerNightDesc (){
+        List<Accommodation> accommodations = AccommodationService.getAccommodationsByOrderByPricePerNightDesc();
+        return ResponseEntity.ok(accommodations);
     }
 
 }

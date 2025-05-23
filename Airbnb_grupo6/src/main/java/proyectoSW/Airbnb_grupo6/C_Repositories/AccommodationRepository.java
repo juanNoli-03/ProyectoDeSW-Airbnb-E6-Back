@@ -6,11 +6,17 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import proyectoSW.Airbnb_grupo6.D_Entities.Accommodation;
 
-
+import java.util.List;
 import java.util.Optional;
 @Repository
 public interface AccommodationRepository extends JpaRepository<Accommodation, Long>{
 
+
+    ///TRAER TODOS LOS ALOJAMIENTO POR PRECIO ASCENDENTE
+    List<Accommodation> findAllByOrderByPricePerNightAsc();
+
+    ///TRAER TODOS LOS ALOJAMIENTO POR PRECIO DESCENDENTE
+    List<Accommodation> findAllByOrderByPricePerNightDesc();
 
 
 }
