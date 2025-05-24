@@ -31,6 +31,9 @@ public class Accommodation {
     @Column(name = "ciudad", nullable = false)
     private String city;
 
+    @Column(name = "continent", nullable = false)
+    private String continent;
+
     @Column(name = "address", nullable = false)
     private String address;
 

@@ -26,6 +26,9 @@ public interface AccommodationService {
     //TRAER TODOS LOS ALOJAMIENTOS POR CIUDAD
     List<Accommodation> getAccommodationsByCity(String city);
 
+    //TRAER TODOS LOS ALOJAMIENTOS POR CONTINENTE
+    List<Accommodation> getAccommodationsByContinent(String continent);
+
     //TRAER TODOS LOS ALOJAMIENTOS POR DISPONIBILIDAD TRUE
     List<Accommodation> getAccommodationsByAvailableTrue();
 }

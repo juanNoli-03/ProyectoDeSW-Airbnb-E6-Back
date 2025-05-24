@@ -60,6 +60,13 @@ public class AccommodationsController {
         return ResponseEntity.ok(accommodations);
     }
 
+    //TRAER TODOS LOS ALOJAMIENTOS POR CONTINENTE
+    @GetMapping("/accommodationsByContinent/{continent}")
+    public ResponseEntity  <List<Accommodation>> getAccommodationsByContinent (@PathVariable String continent){
+        List<Accommodation> accommodations = AccommodationService.getAccommodationsByContinent(continent);
+        return ResponseEntity.ok(accommodations);
+    }
+
     //TRAER TODOS LOS ALOJAMIENTOS POR DISPONIBILIDAD TRUE
     @GetMapping("/accommodationsByAvailableTrue")
     public ResponseEntity  <List<Accommodation>> getAccommodationsByAvailableTrue (){
