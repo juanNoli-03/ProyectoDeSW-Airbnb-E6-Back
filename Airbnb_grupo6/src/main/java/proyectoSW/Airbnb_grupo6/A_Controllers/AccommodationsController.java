@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import proyectoSW.Airbnb_grupo6.D_Entities.Accommodation;
 import proyectoSW.Airbnb_grupo6.B_Services.interfaces.AccommodationService;
+import proyectoSW.Airbnb_grupo6.D_Entities.AccommodationFilter;
 
 import java.util.List;
 
@@ -71,6 +72,23 @@ public class AccommodationsController {
     @GetMapping("/accommodationsByAvailableTrue")
     public ResponseEntity  <List<Accommodation>> getAccommodationsByAvailableTrue (){
         List<Accommodation> accommodations = AccommodationService.getAccommodationsByAvailableTrue();
+        return ResponseEntity.ok(accommodations);
+    }
+
+    @GetMapping("/filterAccommodations")
+    public ResponseEntity<List<Accommodation>> filterAccommodations(
+            @RequestParam(required = false) String continent,
+            @RequestParam(required = false) String country,
+            @RequestParam(required = false) String city,
+            @RequestParam(required = false, defaultValue = "true") Boolean available,
+            @RequestParam(required = false, defaultValue = "true") Boolean sortByPriceDesc) {
+        AccommodationFilter filters = new AccommodationFilter(
+                continent,
+                country,
+                city,
+                available != null && available,
+                sortByPriceDesc != null && sortByPriceDesc);
+        List<Accommodation> accommodations = AccommodationService.filterAccommodations(filters);
         return ResponseEntity.ok(accommodations);
     }
 

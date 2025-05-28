@@ -2,8 +2,12 @@ package proyectoSW.Airbnb_grupo6.B_Services.implementaciones;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import proyectoSW.Airbnb_grupo6.C_Repositories.AccommodationSpecification;
+import proyectoSW.Airbnb_grupo6.D_Entities.AccommodationFilter;
 import proyectoSW.Airbnb_grupo6.E_Exceptions.CustomException;
 import proyectoSW.Airbnb_grupo6.B_Services.interfaces.AccommodationService;
 import proyectoSW.Airbnb_grupo6.C_Repositories.AccommodationRepository;
@@ -17,6 +21,8 @@ public class AccommodationServiceImplementation implements AccommodationService 
 
     @Autowired
     private AccommodationRepository AccommodationRepository;
+    @Autowired
+    private AccommodationRepository accommodationRepository;
 
     /// TRAER TODOS LOS ALOJAMIENTOS
     public List<Accommodation> getAccommodations(){
@@ -117,5 +123,32 @@ public class AccommodationServiceImplementation implements AccommodationService 
         return list;
 
     }
-   
+
+    public List<Accommodation> filterAccommodations(AccommodationFilter filter) {
+
+        Specification<Accommodation> spec = Specification.where(null);
+
+        if (filter.getContinent() != null) {
+            spec = spec.and(AccommodationSpecification.hasContinent(filter.getContinent()));
+        }
+        if (filter.getCountry() != null) {
+            spec = spec.and(AccommodationSpecification.hasCountry(filter.getCountry()));
+        }
+        if (filter.getCity() != null) {
+            spec = spec.and(AccommodationSpecification.hasCity(filter.getCity()));
+        }
+
+        spec = spec.and(AccommodationSpecification.isAvailable(filter.isAvailable()));
+
+
+        Sort sort = filter.isSortByPriceDesc() ? Sort.by("pricePerNight").descending() : Sort.by("pricePerNight").ascending();
+
+        List<Accommodation> result = accommodationRepository.findAll(spec, sort);
+
+        if (result.isEmpty()) {
+            throw new CustomException(HttpStatus.NOT_FOUND, "Error: no existen alojamientos");
+        }
+
+        return result;
+    }
 }

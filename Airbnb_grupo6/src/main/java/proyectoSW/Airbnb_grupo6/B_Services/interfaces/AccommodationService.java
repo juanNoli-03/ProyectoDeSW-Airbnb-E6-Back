@@ -3,6 +3,7 @@ package proyectoSW.Airbnb_grupo6.B_Services.interfaces;
 import java.util.List;
 
 import proyectoSW.Airbnb_grupo6.D_Entities.Accommodation;
+import proyectoSW.Airbnb_grupo6.D_Entities.AccommodationFilter;
 import proyectoSW.Airbnb_grupo6.D_Entities.Booking;
 import proyectoSW.Airbnb_grupo6.D_Entities.User;
 
@@ -31,4 +32,6 @@ public interface AccommodationService {
 
     //TRAER TODOS LOS ALOJAMIENTOS POR DISPONIBILIDAD TRUE
     List<Accommodation> getAccommodationsByAvailableTrue();
+
+    List<Accommodation> filterAccommodations(AccommodationFilter filter);
 }
