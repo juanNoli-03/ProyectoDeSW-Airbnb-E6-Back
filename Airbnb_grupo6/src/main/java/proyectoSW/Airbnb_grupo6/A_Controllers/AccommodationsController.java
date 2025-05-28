@@ -93,5 +93,13 @@ public class AccommodationsController {
         return ResponseEntity.ok(accommodations);
     }
 
+    @GetMapping("/accommodationsByTitle")
+    public ResponseEntity  <List<Accommodation>> getAccommodationsByTitleContainingIgnoreCase (
+            @RequestParam(required = true) String title){
+
+        List<Accommodation> accommodations = AccommodationService.getAccommodationsByTitleContainingIgnoreCase(title);
+        return ResponseEntity.ok(accommodations);
+    }
+
 
 }

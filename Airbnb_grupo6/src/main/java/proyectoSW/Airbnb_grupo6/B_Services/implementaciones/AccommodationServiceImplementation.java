@@ -158,4 +158,19 @@ public class AccommodationServiceImplementation implements AccommodationService 
 
         return result;
     }
+
+
+    ///TRAER POR TITULO 
+    public List<Accommodation> getAccommodationsByTitleContainingIgnoreCase(String title){
+
+        List<Accommodation> list =  new ArrayList<>();
+
+        list = AccommodationRepository.findByTitleContainingIgnoreCase(title);
+
+        if (list.isEmpty()) {
+            throw new CustomException(HttpStatus.NOT_FOUND, "Error: no existen alojamientos");
+        }
+
+        return list;
+    }
 }

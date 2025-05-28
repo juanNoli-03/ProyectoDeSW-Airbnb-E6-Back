@@ -32,4 +32,7 @@ public interface AccommodationRepository extends JpaRepository<Accommodation, Lo
     //TRAER TODOS LOS ALOJAMIENTOS POR DISPONIBILIDAD TRUE
     List<Accommodation> findAllByAvailableTrue();
 
+    ///TRAER POR TITULO 
+    List<Accommodation> findByTitleContainingIgnoreCase(String title);
+
 }

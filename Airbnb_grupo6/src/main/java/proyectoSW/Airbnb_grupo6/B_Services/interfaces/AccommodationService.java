@@ -35,4 +35,7 @@ public interface AccommodationService {
 
     // FILTRADO DINAMICO PARA PERMITIR MULTIPLES COMBINACIONES
     List<Accommodation> filterAccommodations(AccommodationFilter filter);
+
+    ///TRAER POR TITULO 
+    List<Accommodation> getAccommodationsByTitleContainingIgnoreCase(String title);
 }
