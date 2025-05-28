@@ -33,5 +33,6 @@ public interface AccommodationService {
     //TRAER TODOS LOS ALOJAMIENTOS POR DISPONIBILIDAD TRUE
     List<Accommodation> getAccommodationsByAvailableTrue();
 
+    // FILTRADO DINAMICO PARA PERMITIR MULTIPLES COMBINACIONES
     List<Accommodation> filterAccommodations(AccommodationFilter filter);
 }

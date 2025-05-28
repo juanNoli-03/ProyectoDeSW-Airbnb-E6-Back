@@ -75,6 +75,7 @@ public class AccommodationsController {
         return ResponseEntity.ok(accommodations);
     }
 
+    // FILTRADO DINAMICO PARA PERMITIR MULTIPLES COMBINACIONES
     @GetMapping("/filterAccommodations")
     public ResponseEntity<List<Accommodation>> filterAccommodations(
             @RequestParam(required = false) String continent,

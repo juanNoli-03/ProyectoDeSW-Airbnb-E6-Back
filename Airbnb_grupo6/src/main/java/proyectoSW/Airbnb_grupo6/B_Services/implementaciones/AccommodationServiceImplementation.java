@@ -124,6 +124,13 @@ public class AccommodationServiceImplementation implements AccommodationService 
 
     }
 
+    /**
+     * Metodo de combinacion dinamica de filtros usando la entidad {@code AccommodationFilter}
+     *  Solo se buscan en la consulta, los atributos presentes en el objeto filter.
+     * <p>
+     *  Si se quiere añadir un nuevo filtro, se debe agregar en la Clase AccommodationFilter, y agregar sus respectivo
+     *  hasPropiedad en la clase {@code AccommodationSpecification}
+     */
     public List<Accommodation> filterAccommodations(AccommodationFilter filter) {
 
         Specification<Accommodation> spec = Specification.where(null);
