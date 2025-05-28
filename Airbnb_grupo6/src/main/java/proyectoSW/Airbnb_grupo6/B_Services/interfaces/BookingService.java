@@ -29,6 +29,11 @@ public interface BookingService {
         @Param("startDate") LocalDateTime startDate
     );
 
+    /// TRAER RESERVAS ASOCIADAS A UN USUARIO CON ALOJAMIENTOS EN CURSO 
+    List<Booking> getInProgressBookingsByUserAfterDateWithAccommodation(
+        @Param("idUser") Long idUser,
+        @Param("nowDate") LocalDateTime nowDate
+    );
     
 
 }

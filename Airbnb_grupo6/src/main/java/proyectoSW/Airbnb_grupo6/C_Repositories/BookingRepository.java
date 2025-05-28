@@ -36,6 +36,13 @@ public interface BookingRepository extends JpaRepository<Booking, Long>{
         @Param("startDate") LocalDateTime startDate
     );
 
+    /// TRAER RESERVAS ASOCIADAS A UN USUARIO CON ALOJAMIENTOS EN CURSO 
+    @Query("SELECT b FROM Booking b JOIN FETCH b.accommodation WHERE b.user.idUser = :idUser AND b.startDate < :nowDate AND b.endDate > :nowDate")
+    List<Booking> findInProgressBookingsByUserAfterDateWithAccommodation(
+        @Param("idUser") Long idUser,
+        @Param("nowDate") LocalDateTime nowDate
+    );
+
 
 
 

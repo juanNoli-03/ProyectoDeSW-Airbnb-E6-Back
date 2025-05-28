@@ -98,6 +98,14 @@ public class BookingServiceImplementation implements BookingService{
         return bookingRepository.findFutureBookingsByUserAfterDateWithAccommodation(idUser, startDate);
     }
 
+    /// TRAER RESERVAS ASOCIADAS A UN USUARIO CON ALOJAMIENTOS EN CURSO 
+    public List<Booking> getInProgressBookingsByUserAfterDateWithAccommodation(
+        @Param("idUser") Long idUser,
+        @Param("nowDate") LocalDateTime nowDate
+    ){
+        return bookingRepository.findInProgressBookingsByUserAfterDateWithAccommodation(idUser, nowDate);
+    }
+
 
 
 }

@@ -49,5 +49,12 @@ public class BookingController {
         return bookingService.getFutureBookingsByUserAfterDateWithAccommodation(idUser, startDate);
     }
     
-
+    /// TRAER RESERVAS ASOCIADAS A UN USUARIO CON ALOJAMIENTOS EN CURSO 
+    @GetMapping("/user/bookingsInProgress/{idUser}")
+    public List<Booking> getInProgressBookingsByUserAfterDateWithAccommodation(@PathVariable Long idUser) {
+        LocalDateTime nowDate = LocalDateTime.now();
+        return bookingService.getInProgressBookingsByUserAfterDateWithAccommodation(idUser, nowDate);
+    }
+    
+    
 }
