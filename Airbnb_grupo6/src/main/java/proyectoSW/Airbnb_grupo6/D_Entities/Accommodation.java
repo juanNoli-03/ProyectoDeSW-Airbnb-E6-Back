@@ -49,5 +49,12 @@ public class Accommodation {
     @Column(name = "number_of_rating", nullable = false)
     private int numberOfRating;
 
+    @Column(name = "number_of_guests", nullable = false)
+    private int numberOfGuests;
+
     private String imageUrl;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_accommodation_detail", nullable = false)
+    private AccommodationDetail accommodationDetail;
 }
