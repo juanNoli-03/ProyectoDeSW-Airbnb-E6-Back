@@ -1,5 +1,6 @@
 package proyectoSW.Airbnb_grupo6.B_Services.implementaciones;
 
+import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,13 +29,17 @@ public class BookingServiceImplementation implements BookingService{
     @Autowired
     private AccommodationService accommodationService;
 
+    @Autowired
+    private EmailService emailService;
+
+
     ///constructor
     public BookingServiceImplementation(BookingRepository bookingRepository) {
         this.bookingRepository = bookingRepository;
     }
 
     ///CREAR UNA RESERVA 
-    public Booking createBooking(Booking b) {
+    public Booking createBooking(Booking b) throws MessagingException {
 
         // Validaciones de campos obligatorios
         if (b.getStartDate() == null || b.getEndDate() == null
@@ -59,6 +64,9 @@ public class BookingServiceImplementation implements BookingService{
         // Setear entidades completas
         b.setUser(user);
         b.setAccommodation(accommodation);
+
+        //Enviar mail de confirmación de reserva
+        emailService.sendEmailBooking(user.getFirstName(),user.getLastName() , user.getEmail(), accommodation.getTitle(), "Reservaste en Airbnb!" );
 
         // Guardar la reserva en base de datos
         return bookingRepository.save(b);

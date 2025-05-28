@@ -1,5 +1,6 @@
 package proyectoSW.Airbnb_grupo6.A_Controllers;
 
+import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class BookingController {
 
     ///CREAR UNA RESERVA 
     @PostMapping("/booking")
-    public ResponseEntity<Booking> createBooking(@RequestBody Booking booking) {
+    public ResponseEntity<Booking> createBooking(@RequestBody Booking booking) throws MessagingException {
 
         Booking reservation = bookingService.createBooking(booking);
 

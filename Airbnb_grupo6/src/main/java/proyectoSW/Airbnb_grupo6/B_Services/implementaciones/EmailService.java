@@ -31,4 +31,23 @@ public class EmailService {
         helper.setText(htmlMsg, true);
         javaMailSender.send(mimeMessage);
     }
+
+
+
+    @Async
+    public void sendEmailBooking(String nombreUsuario,String apellidoUsuario, String emailDestino,String tituloPropiedad, String subject) throws MessagingException {
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
+        helper.setTo(emailDestino);
+        helper.setSubject(subject);
+
+        String htmlMsg = "<h1>Hola " + nombreUsuario +" "+apellidoUsuario+ ", " +
+                "¡Hiciste una reservación en "+tituloPropiedad+  " ! ✈️🏡</h1>" +
+                "<h3>El propietario del alojamiento se comunicará con vos a traves de este medio, estate atento a las novedades.</h3>" +
+                "<h3>👉 Podes ver tus reservas en: http://localhost:5173/profile\n\n</h3>" +
+                "<h4>¡Gracias por confiar en nuestros servicios!</h4>" +
+                "<h4>El equipo de Airbnb.</h4>";
+        helper.setText(htmlMsg, true);
+        javaMailSender.send(mimeMessage);
+    }
 }
