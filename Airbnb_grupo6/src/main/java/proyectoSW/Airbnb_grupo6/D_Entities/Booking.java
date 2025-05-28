@@ -39,8 +39,8 @@ public class Booking {
     @Column(name = "payment_method", nullable = false)
     private PaymentMethod paymentMethod;
 
-    @Column(name = "rating", nullable = false)
-    private int rating;
+    @Column(name = "rated", nullable = false)
+    private boolean rated;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_accommodation", nullable = false)

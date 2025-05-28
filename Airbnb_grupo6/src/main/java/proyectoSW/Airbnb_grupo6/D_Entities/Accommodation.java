@@ -28,7 +28,7 @@ public class Accommodation {
     @Column(name = "country", nullable = false)
     private String country;
 
-    @Column(name = "ciudad", nullable = false)
+    @Column(name = "city", nullable = false)
     private String city;
 
     @Column(name = "continent", nullable = false)
@@ -42,6 +42,12 @@ public class Accommodation {
 
     @Column(name = "available", nullable = false)
     private Boolean available;
+
+    @Column(name = "rating", nullable = false)
+    private float rating;
+
+    @Column(name = "number_of_rating", nullable = false)
+    private int numberOfRating;
 
     private String imageUrl;
 }
