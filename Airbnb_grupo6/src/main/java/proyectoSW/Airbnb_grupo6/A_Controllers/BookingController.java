@@ -34,10 +34,19 @@ public class BookingController {
         return bookingService.getBookings(idUser);
     }
 
+    /// TRAER RESERVAS ASOCIADAS A UN USUARIO CON ALOJAMIENTOS PASADOS
     @GetMapping("/user/bookingsPast/{idUser}")
-    public List<Booking> getBookingsByUserAndDateRangeWithAccommodation(@PathVariable Long idUser) {
+    public List<Booking> getPastBookingsByUserAndDateRangeWithAccommodation(@PathVariable Long idUser) {
         LocalDateTime endDate = LocalDateTime.now();
-        return bookingService.getBookingsByUserAndDateRangeWithAccommodation(idUser, endDate);
+        return bookingService.getPastBookingsByUserBeforeDateWithAccommodation(idUser, endDate);
+    }
+    
+
+    /// TRAER RESERVAS ASOCIADAS A UN USUARIO CON ALOJAMIENTOS FUTUROS
+    @GetMapping("/user/bookingsFuture/{idUser}")
+    public List<Booking> getFutureBookingsByUserAfterDateWithAccommodation(@PathVariable Long idUser) {
+        LocalDateTime startDate = LocalDateTime.now();
+        return bookingService.getFutureBookingsByUserAfterDateWithAccommodation(idUser, startDate);
     }
     
 

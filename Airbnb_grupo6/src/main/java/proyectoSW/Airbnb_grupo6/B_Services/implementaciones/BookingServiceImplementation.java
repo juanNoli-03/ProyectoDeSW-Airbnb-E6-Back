@@ -81,13 +81,23 @@ public class BookingServiceImplementation implements BookingService{
         return bookingRepository.findBookingsByIdUserWithAccommodationsAndUser(idUser);
     }
 
-    /// TRAER RESERVAS ASOCIADAS A UN USUARIO CON ALOJAMIENTOS ENTRE FECHAS
-    public List<Booking> getBookingsByUserAndDateRangeWithAccommodation(
+    /// TRAER RESERVAS ASOCIADAS A UN USUARIO CON ALOJAMIENTOS PASADOS
+    public List<Booking> getPastBookingsByUserBeforeDateWithAccommodation(
         @Param("idUser") Long idUser,
         @Param("endDate") LocalDateTime endDate
     ){
         return bookingRepository.findPastBookingsByUserBeforeDateWithAccommodation(idUser, endDate);
     }
+
+
+    /// TRAER RESERVAS ASOCIADAS A UN USUARIO CON ALOJAMIENTOS FUTUROS
+    public List<Booking> getFutureBookingsByUserAfterDateWithAccommodation(
+        @Param("idUser") Long idUser,
+        @Param("startDate") LocalDateTime startDate
+    ){
+        return bookingRepository.findFutureBookingsByUserAfterDateWithAccommodation(idUser, startDate);
+    }
+
 
 
 }

@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface BookingService {
@@ -16,10 +17,16 @@ public interface BookingService {
     /// TRAER RESERVAS ASOCIADAS A UN USUARIO CON ALOJAMIENTOS Y USUARIO
     List<Booking> getBookings(Long idUser);
 
-    /// TRAER RESERVAS ASOCIADAS A UN USUARIO CON ALOJAMIENTOS ENTRE FECHAS
-    List<Booking> getBookingsByUserAndDateRangeWithAccommodation(
+    /// TRAER RESERVAS ASOCIADAS A UN USUARIO CON ALOJAMIENTOS PASADOS
+    List<Booking> getPastBookingsByUserBeforeDateWithAccommodation(
         @Param("idUser") Long idUser,
         @Param("endDate") LocalDateTime endDate
+    );
+
+    /// TRAER RESERVAS ASOCIADAS A UN USUARIO CON ALOJAMIENTOS FUTUROS
+    List<Booking> getFutureBookingsByUserAfterDateWithAccommodation(
+        @Param("idUser") Long idUser,
+        @Param("startDate") LocalDateTime startDate
     );
 
     

@@ -23,16 +23,17 @@ public interface BookingRepository extends JpaRepository<Booking, Long>{
     List<Booking> findBookingsByUserId(@Param("userId") Long userId);
 
     /// TRAER RESERVAS ASOCIADAS A UN USUARIO CON ALOJAMIENTOS PASADOS
-    @Query("""
-    SELECT b 
-    FROM Booking b 
-    JOIN FETCH b.accommodation 
-    WHERE b.user.idUser = :idUser 
-      AND b.endDate < :endDate
-    """)
+    @Query("SELECT b FROM Booking b JOIN FETCH b.accommodation WHERE b.user.idUser = :idUser AND b.endDate < :endDate")
     List<Booking> findPastBookingsByUserBeforeDateWithAccommodation(
         @Param("idUser") Long idUser,
         @Param("endDate") LocalDateTime endDate
+    );
+
+    /// TRAER RESERVAS ASOCIADAS A UN USUARIO CON ALOJAMIENTOS FUTUROS
+    @Query("SELECT b FROM Booking b JOIN FETCH b.accommodation WHERE b.user.idUser = :idUser AND b.startDate > :startDate")
+    List<Booking> findFutureBookingsByUserAfterDateWithAccommodation(
+        @Param("idUser") Long idUser,
+        @Param("startDate") LocalDateTime startDate
     );
 
 
