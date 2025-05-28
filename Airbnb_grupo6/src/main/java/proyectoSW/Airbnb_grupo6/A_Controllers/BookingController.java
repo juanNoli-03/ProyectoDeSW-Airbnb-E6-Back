@@ -6,6 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import proyectoSW.Airbnb_grupo6.B_Services.interfaces.BookingService;
 import proyectoSW.Airbnb_grupo6.D_Entities.Booking;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -30,6 +32,12 @@ public class BookingController {
     @GetMapping("/user/bookings/{idUser}")
     public List<Booking> getBookings(@PathVariable Long idUser) {
         return bookingService.getBookings(idUser);
+    }
+
+    @GetMapping("/user/bookingsPast/{idUser}")
+    public List<Booking> getBookingsByUserAndDateRangeWithAccommodation(@PathVariable Long idUser) {
+        LocalDateTime endDate = LocalDateTime.now();
+        return bookingService.getBookingsByUserAndDateRangeWithAccommodation(idUser, endDate);
     }
     
 

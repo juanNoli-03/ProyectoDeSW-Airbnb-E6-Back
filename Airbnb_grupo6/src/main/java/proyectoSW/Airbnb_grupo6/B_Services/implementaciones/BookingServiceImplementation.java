@@ -3,6 +3,7 @@ package proyectoSW.Airbnb_grupo6.B_Services.implementaciones;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import proyectoSW.Airbnb_grupo6.C_Repositories.BookingRepository;
@@ -10,6 +11,9 @@ import proyectoSW.Airbnb_grupo6.D_Entities.Accommodation;
 import proyectoSW.Airbnb_grupo6.D_Entities.Booking;
 import proyectoSW.Airbnb_grupo6.D_Entities.User;
 import proyectoSW.Airbnb_grupo6.E_Exceptions.CustomException;
+
+import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 import proyectoSW.Airbnb_grupo6.B_Services.interfaces.BookingService;
 import proyectoSW.Airbnb_grupo6.B_Services.interfaces.UserService;
@@ -76,5 +80,14 @@ public class BookingServiceImplementation implements BookingService{
     public List<Booking> getBookings(Long idUser) {
         return bookingRepository.findBookingsByIdUserWithAccommodationsAndUser(idUser);
     }
+
+    /// TRAER RESERVAS ASOCIADAS A UN USUARIO CON ALOJAMIENTOS ENTRE FECHAS
+    public List<Booking> getBookingsByUserAndDateRangeWithAccommodation(
+        @Param("idUser") Long idUser,
+        @Param("endDate") LocalDateTime endDate
+    ){
+        return bookingRepository.findPastBookingsByUserBeforeDateWithAccommodation(idUser, endDate);
+    }
+
 
 }

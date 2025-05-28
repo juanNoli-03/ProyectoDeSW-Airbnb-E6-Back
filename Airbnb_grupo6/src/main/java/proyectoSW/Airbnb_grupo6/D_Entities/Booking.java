@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import proyectoSW.Airbnb_grupo6.E_Enums.PaymentMethod;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Builder
 @Data
 @AllArgsConstructor
@@ -48,6 +50,7 @@ public class Booking {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_user", nullable = false)
+    @JsonIgnore
     private User user;
 
 }
