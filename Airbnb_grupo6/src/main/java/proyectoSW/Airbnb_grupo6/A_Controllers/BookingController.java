@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import proyectoSW.Airbnb_grupo6.B_Services.interfaces.BookingService;
 import proyectoSW.Airbnb_grupo6.D_Entities.Booking;
+import scala.collection.concurrent.Map;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -54,6 +55,23 @@ public class BookingController {
     public List<Booking> getInProgressBookingsByUserAfterDateWithAccommodation(@PathVariable Long idUser) {
         LocalDateTime nowDate = LocalDateTime.now();
         return bookingService.getInProgressBookingsByUserAfterDateWithAccommodation(idUser, nowDate);
+    }
+
+    ///TRAER RESERVA POR ID ALOJAMIENTO CON ALOJAMIENTO
+    @GetMapping("/booking/{idBooking}")
+    public Booking getBookingByIdWithAccommodation(@PathVariable Long idBooking) {
+        return bookingService.getBookingByIdWithAccommodation(idBooking);
+    }
+
+
+    ///MODIFICAR RATING DE UNA BOOKING
+    @PutMapping("/booking/{idBooking}/rate")
+    public ResponseEntity<Booking> rateBooking(
+        @PathVariable Long idBooking,
+        @RequestParam float rating
+    ) {
+        Booking updated = bookingService.updateRatingBooking(idBooking, rating);
+        return ResponseEntity.ok(updated);
     }
     
     

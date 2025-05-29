@@ -3,6 +3,7 @@ package proyectoSW.Airbnb_grupo6.B_Services.implementaciones;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import proyectoSW.Airbnb_grupo6.E_Exceptions.CustomException;
 
 import java.time.LocalDateTime;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import proyectoSW.Airbnb_grupo6.B_Services.interfaces.BookingService;
 import proyectoSW.Airbnb_grupo6.B_Services.interfaces.UserService;
@@ -107,5 +109,43 @@ public class BookingServiceImplementation implements BookingService{
     }
 
 
+    ///TRAER RESERVA POR ID CON ALOJAMIENTO
+    public Booking getBookingByIdWithAccommodation(@Param("idBooking") Long idBooking){
+        return bookingRepository.findBookingByIdWithAccommodation(idBooking);
+    }
+
+    
+    ///MODIFICAR RATING DE UNA BOOKING
+    public Booking updateRatingBooking(
+        @Param("idBooking") Long idBooking,
+        @Param("newRating") float newRating
+    ){
+        
+        Booking b = getBookingByIdWithAccommodation(idBooking);
+
+        if (b != null) {
+            
+            if(b.isRated() == false){
+
+                int numberOfRating = b.getAccommodation().getNumberOfRating() + 1;
+                float resultRating = ((b.getAccommodation().getRating() * b.getAccommodation().getNumberOfRating()) + newRating) / (numberOfRating);
+                
+                b.getAccommodation().setNumberOfRating(numberOfRating);
+                b.getAccommodation().setRating(resultRating);
+                b.setRated(true);
+
+            }else{
+
+                throw new CustomException(HttpStatus.BAD_REQUEST, "Esta reserva ya fue calificada.");
+            }
+
+        }else{
+
+            throw new CustomException(HttpStatus.NOT_FOUND, "No se encontró la reserva con ID: " + idBooking);
+        }
+
+        return bookingRepository.save(b);
+    } 
+    
 
 }

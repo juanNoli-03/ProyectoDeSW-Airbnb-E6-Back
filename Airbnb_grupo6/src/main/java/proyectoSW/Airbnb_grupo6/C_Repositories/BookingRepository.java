@@ -43,6 +43,10 @@ public interface BookingRepository extends JpaRepository<Booking, Long>{
         @Param("nowDate") LocalDateTime nowDate
     );
 
+    ///TRAER RESERVA POR ID CON ALOJAMIENTO
+    @Query("SELECT b FROM Booking b JOIN FETCH b.user JOIN FETCH b.accommodation WHERE b.idBooking = :idBooking")
+    Booking findBookingByIdWithAccommodation(@Param("idBooking") Long idBooking);
+
 
 
 

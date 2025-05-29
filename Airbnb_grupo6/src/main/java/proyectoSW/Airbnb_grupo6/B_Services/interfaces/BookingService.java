@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.web.bind.annotation.RequestParam;
 
 public interface BookingService {
 
@@ -34,6 +35,15 @@ public interface BookingService {
         @Param("idUser") Long idUser,
         @Param("nowDate") LocalDateTime nowDate
     );
+
+    ///TRAER RESERVA POR ID ALOJAMIENTO CON ALOJAMIENTO
+    public Booking getBookingByIdWithAccommodation(@RequestParam("idBooking") Long idBooking);
+
+    //MODIFICAR RATING DE UNA BOOKING
+    Booking updateRatingBooking(
+        @Param("idUser") Long idBooking,
+        @Param("newRating") float newRating
+    ); 
     
 
 }
