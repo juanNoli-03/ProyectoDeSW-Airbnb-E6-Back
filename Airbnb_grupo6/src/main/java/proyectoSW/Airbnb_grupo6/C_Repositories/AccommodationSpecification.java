@@ -17,6 +17,10 @@ public class AccommodationSpecification {
         return (root, query, cb) -> cb.equal(root.get("city"), city);
     }
 
+    public static Specification<Accommodation> isPricePerNightLower(Double pricePerNight) {
+        return (root, query, cb) -> cb.lessThan(root.get("pricePerNight"), pricePerNight);
+    }
+
     public static Specification<Accommodation> isAvailable(Boolean available) {
         return (root, query, cb) -> cb.equal(root.get("available"), available);
     }

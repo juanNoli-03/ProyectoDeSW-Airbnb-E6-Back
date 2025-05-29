@@ -81,14 +81,17 @@ public class AccommodationsController {
             @RequestParam(required = false) String continent,
             @RequestParam(required = false) String country,
             @RequestParam(required = false) String city,
-            @RequestParam(required = false, defaultValue = "true") Boolean available,
-            @RequestParam(required = false, defaultValue = "true") Boolean sortByPriceDesc) {
+            @RequestParam(required = false) Boolean available,
+            @RequestParam(required = false, defaultValue = "true") Boolean sortByPriceDesc,
+            @RequestParam(required = false) Double pricePerNight) {
         AccommodationFilter filters = new AccommodationFilter(
                 continent,
                 country,
                 city,
+                pricePerNight,
                 available != null && available,
-                sortByPriceDesc != null && sortByPriceDesc);
+                sortByPriceDesc != null && sortByPriceDesc
+                );
         List<Accommodation> accommodations = AccommodationService.filterAccommodations(filters);
         return ResponseEntity.ok(accommodations);
     }

@@ -20,8 +20,6 @@ import java.util.*;
 public class AccommodationServiceImplementation implements AccommodationService {
 
     @Autowired
-    private AccommodationRepository AccommodationRepository;
-    @Autowired
     private AccommodationRepository accommodationRepository;
 
     /// TRAER TODOS LOS ALOJAMIENTOS
@@ -29,7 +27,7 @@ public class AccommodationServiceImplementation implements AccommodationService 
 
         List<Accommodation> list =  new ArrayList<>();
 
-        list = AccommodationRepository.findAll();
+        list = accommodationRepository.findAll();
         if (list.isEmpty()) {
             throw new CustomException(HttpStatus.NOT_FOUND, "Error: no existen alojamientos");
         }
@@ -39,14 +37,14 @@ public class AccommodationServiceImplementation implements AccommodationService 
 
     ///TRAER ALOJAMIENTO POR ID
     public Accommodation getAccommodation(Long idAccommodation){
-        return AccommodationRepository.findById(idAccommodation).orElseThrow(() -> new CustomException(HttpStatus.NOT_FOUND, "Error: no existen alojamientos"));
+        return accommodationRepository.findById(idAccommodation).orElseThrow(() -> new CustomException(HttpStatus.NOT_FOUND, "Error: no existen alojamientos"));
     }
 
     ///TRAER TODOS LOS ALOJAMIENTO POR PRECIO ASCENDENTE
     public List<Accommodation> getAccommodationsByOrderByPricePerNightAsc(){
 
         List<Accommodation> list =  new ArrayList<>();
-        list = AccommodationRepository.findAllByOrderByPricePerNightAsc();
+        list = accommodationRepository.findAllByOrderByPricePerNightAsc();
 
         if (list.isEmpty()) {
             throw new CustomException(HttpStatus.NOT_FOUND, "Error: no existen alojamientos");
@@ -59,7 +57,7 @@ public class AccommodationServiceImplementation implements AccommodationService 
     public List<Accommodation> getAccommodationsByOrderByPricePerNightDesc(){
 
         List<Accommodation> list =  new ArrayList<>();
-        list = AccommodationRepository.findAllByOrderByPricePerNightDesc();
+        list = accommodationRepository.findAllByOrderByPricePerNightDesc();
 
         if (list.isEmpty()) {
             throw new CustomException(HttpStatus.NOT_FOUND, "Error: no existen alojamientos");
@@ -72,7 +70,7 @@ public class AccommodationServiceImplementation implements AccommodationService 
     public List<Accommodation> getAccommodationsByCountry(String country){
 
         List<Accommodation> list =  new ArrayList<>();
-        list = AccommodationRepository.findAllByCountry(country);
+        list = accommodationRepository.findAllByCountry(country);
 
         if (list.isEmpty()) {
             throw new CustomException(HttpStatus.NOT_FOUND, "Error: no existen alojamientos");
@@ -86,7 +84,7 @@ public class AccommodationServiceImplementation implements AccommodationService 
     public List<Accommodation> getAccommodationsByCity(String city){
 
         List<Accommodation> list =  new ArrayList<>();
-        list = AccommodationRepository.findAllByCity(city);
+        list = accommodationRepository.findAllByCity(city);
 
         if (list.isEmpty()) {
             throw new CustomException(HttpStatus.NOT_FOUND, "Error: no existen alojamientos");
@@ -100,7 +98,7 @@ public class AccommodationServiceImplementation implements AccommodationService 
     public List<Accommodation> getAccommodationsByContinent(String continent){
 
         List<Accommodation> list =  new ArrayList<>();
-        list = AccommodationRepository.findAllByContinent(continent);
+        list = accommodationRepository.findAllByContinent(continent);
 
         if (list.isEmpty()) {
             throw new CustomException(HttpStatus.NOT_FOUND, "Error: no existen alojamientos");
@@ -114,7 +112,7 @@ public class AccommodationServiceImplementation implements AccommodationService 
     public List<Accommodation> getAccommodationsByAvailableTrue(){
 
         List<Accommodation> list =  new ArrayList<>();
-        list = AccommodationRepository.findAllByAvailableTrue();
+        list = accommodationRepository.findAllByAvailableTrue();
 
         if (list.isEmpty()) {
             throw new CustomException(HttpStatus.NOT_FOUND, "Error: no existen alojamientos");
@@ -145,7 +143,13 @@ public class AccommodationServiceImplementation implements AccommodationService 
             spec = spec.and(AccommodationSpecification.hasCity(filter.getCity()));
         }
 
-        spec = spec.and(AccommodationSpecification.isAvailable(filter.isAvailable()));
+        if (filter.getPricePerNight() != null) {
+            spec = spec.and(AccommodationSpecification.isPricePerNightLower(filter.getPricePerNight()));
+        }
+
+        if (filter.getAvailable().equals(Boolean.TRUE)) {
+            spec = spec.and(AccommodationSpecification.isAvailable(filter.getAvailable()));
+        }
 
 
         Sort sort = filter.isSortByPriceDesc() ? Sort.by("pricePerNight").descending() : Sort.by("pricePerNight").ascending();
@@ -165,7 +169,7 @@ public class AccommodationServiceImplementation implements AccommodationService 
 
         List<Accommodation> list =  new ArrayList<>();
 
-        list = AccommodationRepository.findByTitleContainingIgnoreCase(title);
+        list = accommodationRepository.findByTitleContainingIgnoreCase(title);
 
         if (list.isEmpty()) {
             throw new CustomException(HttpStatus.NOT_FOUND, "Error: no existen alojamientos");

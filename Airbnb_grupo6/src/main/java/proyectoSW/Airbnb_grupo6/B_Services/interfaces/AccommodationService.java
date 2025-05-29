@@ -4,8 +4,6 @@ import java.util.List;
 
 import proyectoSW.Airbnb_grupo6.D_Entities.Accommodation;
 import proyectoSW.Airbnb_grupo6.D_Entities.AccommodationFilter;
-import proyectoSW.Airbnb_grupo6.D_Entities.Booking;
-import proyectoSW.Airbnb_grupo6.D_Entities.User;
 
 public interface AccommodationService {
     
