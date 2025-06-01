@@ -33,9 +33,13 @@ public class UserServiceImplementation implements UserService {
     @Override
     public CreateUserDTO signUp(CreateUserDTO createUserDTO) throws MessagingException {
 
+        User userBuscado = userRepository.findByEmail(createUserDTO.getEmail())
+                .orElseThrow( ()-> new CustomException(HttpStatus.FORBIDDEN, "Ya existe un usuario registrado con el mismo email!"));
+
         //Inicializamos el user vacío.
         User userAGuardar = User.builder().build();
         createUserDTO.guardarCreateUserDTO(userAGuardar);
+
         userRepository.save(userAGuardar);
         emailService.sendEmail((createUserDTO.getFirstName() +" "+ createUserDTO.getLastName() ), createUserDTO.getEmail(),
                 "Bienvenido a Airbnb!" );
