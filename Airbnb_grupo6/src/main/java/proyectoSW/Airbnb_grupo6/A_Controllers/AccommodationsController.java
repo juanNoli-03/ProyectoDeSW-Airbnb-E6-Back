@@ -81,7 +81,6 @@ public class AccommodationsController {
             @RequestParam(required = false) String continent,
             @RequestParam(required = false) String country,
             @RequestParam(required = false) String city,
-            @RequestParam(required = false) Boolean available,
             @RequestParam(required = false, defaultValue = "true") Boolean sortByPriceDesc,
             @RequestParam(required = false) Double pricePerNight) {
         AccommodationFilter filters = new AccommodationFilter(
@@ -89,7 +88,6 @@ public class AccommodationsController {
                 country,
                 city,
                 pricePerNight,
-                available != null && available,
                 sortByPriceDesc != null && sortByPriceDesc
                 );
         List<Accommodation> accommodations = AccommodationService.filterAccommodations(filters);

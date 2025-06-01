@@ -12,6 +12,5 @@ public class AccommodationFilter {
     private String country;
     private String city;
     private Double pricePerNight;
-    private Boolean available;
     private boolean sortByPriceDesc;
 }

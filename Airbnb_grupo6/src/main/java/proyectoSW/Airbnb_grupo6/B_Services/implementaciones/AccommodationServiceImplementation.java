@@ -147,11 +147,6 @@ public class AccommodationServiceImplementation implements AccommodationService 
             spec = spec.and(AccommodationSpecification.isPricePerNightLower(filter.getPricePerNight()));
         }
 
-        if (filter.getAvailable().equals(Boolean.TRUE)) {
-            spec = spec.and(AccommodationSpecification.isAvailable(filter.getAvailable()));
-        }
-
-
         Sort sort = filter.isSortByPriceDesc() ? Sort.by("pricePerNight").descending() : Sort.by("pricePerNight").ascending();
 
         List<Accommodation> result = accommodationRepository.findAll(spec, sort);
